@@ -1,0 +1,8 @@
+defaultTasks = ["copyWebcontent"]
+
+task copyWebcontent(type: Copy) {
+  from('src/main/webapp') {
+    include '**/*'
+  }
+  into('/mnt/Qweb/rtcto')
+ }
