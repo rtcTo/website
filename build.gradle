@@ -1,8 +1,6 @@
-defaultTasks = ["copyWebcontent"]
+defaultTasks = ["syncWebcontent"]
 
-task copyWebcontent(type: Copy) {
-  from('src/main/webapp') {
-    include '**/*'
-  }
-  into('/mnt/Qweb/rtcto')
+task syncWebcontent(type: Sync) {
+  from 'src/main/webapp'
+  into '/mnt/Qweb/rtcto'
  }
