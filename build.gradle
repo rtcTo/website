@@ -1,6 +1,10 @@
 defaultTasks = ["syncWebcontent"]
 
 task syncWebcontent(type: Sync) {
+  if (!project.hasProperty('htmlRoot')) {
+    println "no synchronization of web content would be done due missing 'htmlRoot' property"
+    return
+  }
   from 'src/main/webapp'
-  into '/mnt/Qweb/rtcto'
- }
+  into htmlRoot
+}
