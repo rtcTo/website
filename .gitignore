@@ -1,3 +1,4 @@
-.gradle/
-/.project
+.gradle
+.project
+.settings
 /src/main/webapp/assets/.sass-cache/
