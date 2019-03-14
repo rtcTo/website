@@ -110,16 +110,19 @@
 		</header>
 		<div class="content style4 featured">
 			<div class="container 75%">
-				<form accept-charset="UTF-8" method="post" action="https://rtc.to/cgi-bin/slack-sign-up.php">
+				<form id="slack-form" accept-charset="UTF-8" method="post" action="javascript:onFormSubmit();">
 					<div class="row 50%">
 						<div class="6u 12u(mobile)">
-							<input type="text" name="firstName" placeholder="First Name *" />
+							<input type="text" id="firstName" name="firstName" placeholder="First Name *" />
 						</div>
 						<div class="6u 12u(mobile)">
-							<input type="text" name="lastName" placeholder="Last Name *" />
+							<input type="text" id="lastName" name="lastName" placeholder="Last Name *" />
 						</div>
 						<div class="6u 12u(mobile)">
-							<input type="text" name="email" placeholder="Email *" />
+							<input type="text" id="email" name="email" placeholder="Email *" />
+						</div>
+						<div class="6u 12u(mobile)">
+							<div class="g-recaptcha" data-sitekey="6LcawpcUAAAAANy_DvLiMfmNE3x0BGdv24vla0tb" data-callback="onRecaptcha"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -156,6 +159,25 @@
 	<script src="assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="assets/js/main.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+	<script>
+		function onRecaptcha() {
+			document.getElementById("slack-form").action = 'https://rtc.to/cgi-bin/slack-sign-up.php'
+		}
+		function onFormSubmit() {
+			if (document.getElementById("firstName").value === "") {
+				alert("first must not name empty");
+			} else if (document.getElementById("lastName").value === "") {
+				alert("last name must not be empty");
+			} else if (document.getElementById("email").value === "") {
+				alert("email must not be empty");
+			} else if (document.getElementById("slack-form").action === "javascript:onFormSubmit();") {
+				alert("check the recaptcha check box");
+			} else {
+				document.getElementById("slack-form").submit();
+			}
+		}
+	</script>
 
 </body>
 </html>
